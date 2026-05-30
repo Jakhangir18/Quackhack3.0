@@ -12,26 +12,27 @@ import re
 import yaml
 from playwright.sync_api import sync_playwright
 
+# Matches: role "name" [level=N]  — name and level are optional
+_KEY_RE = re.compile(r'^(\w+)(?:\s+"([^"]*)")?(?:\s+\[level=(\d+)\])?')
 
-def _yaml_to_tree(node):
-    """Convert the parsed ARIA YAML structure into the dict shape filter.py expects."""
-    if isinstance(node, str):
-        return {"role": "text", "name": node, "children": []}
-    if isinstance(node, dict):
-        result = {}
-        for key, value in node.items():
-            # key is like 'heading "Page Title" [level=1]'
-            match = re.match(r'(\w+)(?:\s+"([^"]*)")?(?:\s+\[level=(\d+)\])?', key)
-            if match:
-                result["role"] = match.group(1)
-                if match.group(2):
-                    result["name"] = match.group(2)
-                if match.group(3):
-                    result["level"] = int(match.group(3))
-            children = value if isinstance(value, list) else ([value] if value else [])
-            result["children"] = [_yaml_to_tree(c) for c in children]
-            return result
-    return {}
+
+def _parse_node(key, value):
+    """Turn one ARIA YAML key+value into the dict shape filter.py expects."""
+    m = _KEY_RE.match(key)
+    node = {"role": m.group(1) if m else "generic", "children": []}
+    if m and m.group(2):
+        node["name"] = m.group(2)
+    if m and m.group(3):
+        node["level"] = int(m.group(3))
+
+    children = value if isinstance(value, list) else ([value] if value is not None else [])
+    for child in children:
+        if isinstance(child, str):
+            node["children"].append({"role": "text", "name": child, "children": []})
+        elif isinstance(child, dict):
+            for ck, cv in child.items():
+                node["children"].append(_parse_node(ck, cv))
+    return node
 
 
 def fetch_ax_tree(url, timeout_ms=15000, headless=True):
@@ -43,5 +44,14 @@ def fetch_ax_tree(url, timeout_ms=15000, headless=True):
             snapshot = page.aria_snapshot()
         finally:
             browser.close()
-        parsed = yaml.safe_load(snapshot) if snapshot else {}
-        return _yaml_to_tree(parsed) if parsed else {}
+
+    parsed = yaml.safe_load(snapshot) if snapshot else []
+    # aria_snapshot() always returns a top-level list; wrap in a root node
+    root_children = []
+    for item in (parsed or []):
+        if isinstance(item, str):
+            root_children.append({"role": "text", "name": item, "children": []})
+        elif isinstance(item, dict):
+            for k, v in item.items():
+                root_children.append(_parse_node(k, v))
+    return {"role": "document", "name": "", "children": root_children}
