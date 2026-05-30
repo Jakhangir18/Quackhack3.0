@@ -4,13 +4,34 @@ One-time setup on the host machine (NOT needed for --offline mode):
     pip install playwright
     playwright install chromium
 
-Note: page.accessibility.snapshot() is the classic API and returns clean JSON,
-which is the easiest thing to hand an LLM. Playwright's newer aria_snapshot()
-returns YAML and is aimed at testing; the 'AI snapshot' variant also embeds
-element refs (e.g. [ref=e2]) that let an agent act on specific nodes later.
-Start with snapshot(); switch only if you hit its limits.
+Note: page.accessibility.snapshot() was removed in Playwright 1.49+. We now use
+page.aria_snapshot() which returns a YAML string in ARIA role syntax. We parse
+it back into a dict tree so the rest of the pipeline is unchanged.
 """
+import re
+import yaml
 from playwright.sync_api import sync_playwright
+
+
+def _yaml_to_tree(node):
+    """Convert the parsed ARIA YAML structure into the dict shape filter.py expects."""
+    if isinstance(node, str):
+        return {"role": "text", "name": node, "children": []}
+    if isinstance(node, dict):
+        result = {}
+        for key, value in node.items():
+            # key is like 'heading "Page Title" [level=1]'
+            match = re.match(r'(\w+)(?:\s+"([^"]*)")?(?:\s+\[level=(\d+)\])?', key)
+            if match:
+                result["role"] = match.group(1)
+                if match.group(2):
+                    result["name"] = match.group(2)
+                if match.group(3):
+                    result["level"] = int(match.group(3))
+            children = value if isinstance(value, list) else ([value] if value else [])
+            result["children"] = [_yaml_to_tree(c) for c in children]
+            return result
+    return {}
 
 
 def fetch_ax_tree(url, timeout_ms=15000, headless=True):
@@ -19,8 +40,8 @@ def fetch_ax_tree(url, timeout_ms=15000, headless=True):
         page = browser.new_page()
         try:
             page.goto(url, wait_until="domcontentloaded", timeout=timeout_ms)
-            # interesting_only=True (default) prunes presentational nodes for us.
-            tree = page.accessibility.snapshot(interesting_only=True)
+            snapshot = page.aria_snapshot()
         finally:
             browser.close()
-        return tree or {}
+        parsed = yaml.safe_load(snapshot) if snapshot else {}
+        return _yaml_to_tree(parsed) if parsed else {}
