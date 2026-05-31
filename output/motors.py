@@ -1,6 +1,7 @@
 from time import sleep
 
 from gpiozero import PWMOutputDevice
+
 from output.mappings import mapping
 
 LEVEL = 0.35  # vibration strength 0.0-1.0 (raise/lower as needed)
@@ -20,8 +21,8 @@ DOT_GPIO = {
     2: 5,  # dot2 / left middle  -> GPIO5  / physical pin 29
     3: 6,  # dot3 / left bottom  -> GPIO6  / physical pin 31
     4: 26,  # dot4 / right top    -> GPIO26 / physical pin 37
-    5: 12,  # dot5 / right middle -> GPIO12 / physical pin 32
-    6: 16,  # dot6 / right bottom -> GPIO16 / physical pin 36
+    5: 16,  # dot5 / right middle -> GPIO12 / physical pin 32
+    6: 12,  # dot6 / right bottom -> GPIO16 / physical pin 36
     # 7: 20, # dot7 / bottom left  -> GPIO20 / physical pin 38  (8-dot braille later)
     # 8: 21, # dot8 / bottom right -> GPIO21 / physical pin 40  (8-dot braille later)
 }
