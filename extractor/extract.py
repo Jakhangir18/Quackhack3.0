@@ -44,6 +44,8 @@ def _parse_node(key, value):
             node["children"].append(_parse_string_node(child))
         elif isinstance(child, dict):
             for ck, cv in child.items():
+                if str(ck).startswith("/"):
+                    continue
                 node["children"].append(_parse_node(ck, cv))
     return node
 
