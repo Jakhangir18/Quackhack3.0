@@ -1,0 +1,422 @@
+{
+  "domain": "andrewkelley.me",
+  "title": "Andrew Kelley",
+  "orientation": "This page provides information about Andrew Kelley, his blog posts, projects, talks, and game jam entries.",
+  "sections": [
+    {
+      "heading": "About Andrew Kelley",
+      "items": [
+        {
+          "text": "Zig Software Foundation",
+          "verbatim": "Zig Software Foundation — President and Lead Developer of Zig Software Foundation.",
+          "role": "link"
+        },
+        {
+          "text": "Email",
+          "verbatim": "Email",
+          "role": "link"
+        },
+        {
+          "text": "RSS",
+          "verbatim": "RSS",
+          "role": "link"
+        },
+        {
+          "text": "Codeberg",
+          "verbatim": "Codeberg",
+          "role": "link"
+        }
+      ]
+    },
+    {
+      "heading": "Blog Posts",
+      "items": [
+        {
+          "text": "Async IO text — Oct 2025",
+          "verbatim": "Zig's New Async I/O (Text Version) — 2025 Oct 29",
+          "role": "link"
+        },
+        {
+          "text": "Open Letter — Aug 2025",
+          "verbatim": "An Open Letter to Everyone I've Butted Heads With — 2025 Aug 29",
+          "role": "link"
+        },
+        {
+          "text": "Renting is for Suckers — Jul 2025",
+          "verbatim": "Renting is for Suckers — 2025 Jul 24",
+          "role": "link"
+        },
+        {
+          "text": "OpenZFS Bug Ported to Zig — Jul 2025",
+          "verbatim": "OpenZFS Bug Ported to Zig — 2025 Jul 14",
+          "role": "link"
+        },
+        {
+          "text": "Zig CLI Progress Bar — May 2024",
+          "verbatim": "Zig's New CLI Progress Bar Explained — 2024 May 30",
+          "role": "link"
+        },
+        {
+          "text": "Redis Renamed to Redict — Mar 2024",
+          "verbatim": "Redis Renamed to Redict — 2024 Mar 22",
+          "role": "link"
+        },
+        {
+          "text": "Why Can't Have Nice Software — Feb 2024",
+          "verbatim": "Why We Can't Have Nice Software — 2024 Feb 04",
+          "role": "link"
+        },
+        {
+          "text": "Techno-Optimist Manifesto — Oct 2023",
+          "verbatim": "The Techno-Optimist Manifesto — 2023 Oct 17",
+          "role": "link"
+        },
+        {
+          "text": "So Long, Twitter and Reddit — Aug 2023",
+          "verbatim": "So Long, Twitter and Reddit — 2023 Aug 23",
+          "role": "link"
+        },
+        {
+          "text": "zig cc replacement for GCC/Clang — Mar 2020",
+          "verbatim": "`zig cc`: a Powerful Drop-In Replacement for GCC/Clang — 2020 Mar 24",
+          "role": "link"
+        },
+        {
+          "text": "Donating $150/month to musl libc — Jun 2019",
+          "verbatim": "Why I'm donating $150/month (10% of my income) to the musl libc project — 2019 Jun 24",
+          "role": "link"
+        },
+        {
+          "text": "Zig Stack Traces Kernel Panic OS — Dec 2018",
+          "verbatim": "Using Zig to Provide Stack Traces on Kernel Panic for a Bare Bones Operating System — 2018 Dec 04",
+          "role": "link"
+        },
+        {
+          "text": "String Matching Compile Time Hashing Zig — Sep 2018",
+          "verbatim": "String Matching based on Compile Time Perfect Hashing in Zig — 2018 Sep 15",
+          "role": "link"
+        },
+        {
+          "text": "Quit OkCupid for Zig Donations — Jun 2018",
+          "verbatim": "I Quit My Cushy Job at OkCupid to Live on Donations to Zig — 2018 Jun 07",
+          "role": "link"
+        },
+        {
+          "text": "Zig January 2018 Review — Feb 2018",
+          "verbatim": "Zig: January 2018 in Review — 2018 Feb 11",
+          "role": "link"
+        },
+        {
+          "text": "Unsafe Zig Safer Than Unsafe Rust — Jan 2018",
+          "verbatim": "Unsafe Zig is Safer Than Unsafe Rust — 2018 Jan 24",
+          "role": "link"
+        },
+        {
+          "text": "Zig December 2017 Review — Jan 2018",
+          "verbatim": "Zig: December 2017 in Review — 2018 Jan 03",
+          "role": "link"
+        },
+        {
+          "text": "Better Way Implement Bit Fields — Feb 2017",
+          "verbatim": "A Better Way to Implement Bit Fields — 2017 Feb 17",
+          "role": "link"
+        },
+        {
+          "text": "Zig More Knowable Than C — Feb 2017",
+          "verbatim": "Zig: Already More Knowable Than C — 2017 Feb 14",
+          "role": "link"
+        },
+        {
+          "text": "Zig Blurs Compile-Time Run-Time — Jan 2017",
+          "verbatim": "Zig Programming Language Blurs the Line Between Compile-Time and Run-Time — 2017 Jan 30",
+          "role": "link"
+        },
+        {
+          "text": "Troubleshooting Zig Regression apitrace — Jan 2017",
+          "verbatim": "Troubleshooting a Zig Regression with apitrace — 2017 Jan 17",
+          "role": "link"
+        },
+        {
+          "text": "Intro to Zig Language — Feb 2016",
+          "verbatim": "Introduction to the Zig Programming Language — 2016 Feb 08",
+          "role": "link"
+        },
+        {
+          "text": "Raspberry Pi Music Player Server — Jun 2014",
+          "verbatim": "Turn Your Raspberry Pi into a Music Player Server — 2014 Jun 20",
+          "role": "link"
+        },
+        {
+          "text": "Laptop Review Bonobo Extreme — Jun 2014",
+          "verbatim": "Laptop Review - Bonobo Extreme — 2014 Jun 12",
+          "role": "link"
+        },
+        {
+          "text": "Quest Ultimate Music Player — Apr 2014",
+          "verbatim": "My Quest to Build the Ultimate Music Player — 2014 Apr 22",
+          "role": "link"
+        },
+        {
+          "text": "Do Not Use bodyParser Express.js — Sep 2013",
+          "verbatim": "Do Not Use bodyParser with Express.js — 2013 Sep 06",
+          "role": "link"
+        },
+        {
+          "text": "JavaScript Callbacks Pretty Okay — Aug 2013",
+          "verbatim": "JavaScript Callbacks are Pretty Okay — 2013 Aug 17",
+          "role": "link"
+        },
+        {
+          "text": "I am not a backslash — Aug 2013",
+          "verbatim": "I am not a \\ — 2013 Aug 14",
+          "role": "link"
+        },
+        {
+          "text": "7dRTS Game Reviews — Jul 2013",
+          "verbatim": "7dRTS Game Reviews — 2013 Jul 30",
+          "role": "link"
+        },
+        {
+          "text": "Pillagers! 7dRTS Game Journal — Jul 2013",
+          "verbatim": "Pillagers! 7dRTS Game Development Journal — 2013 Jul 23",
+          "role": "link"
+        },
+        {
+          "text": "Private Methods JavaScript — Jul 2013",
+          "verbatim": "Private Methods in JavaScript — 2013 Jul 17",
+          "role": "link"
+        },
+        {
+          "text": "Spot the Fail — Jul 2013",
+          "verbatim": "Spot the Fail — 2013 Jul 10",
+          "role": "link"
+        },
+        {
+          "text": "Recompiling NES Games LLVM Go — Jun 2013",
+          "verbatim": "Statically Recompiling NES Games into Native Executables with LLVM and Go — 2013 Jun 07",
+          "role": "link"
+        },
+        {
+          "text": "Rapid Email Templates Node.js — Jan 2013",
+          "verbatim": "Rapid Development Email Templates with Node.js — 2013 Jan 30",
+          "role": "link"
+        },
+        {
+          "text": "Successful at PyWeek — Aug 2011",
+          "verbatim": "How to be Successful at PyWeek — 2011 Aug 07",
+          "role": "link"
+        },
+        {
+          "text": "John Muir Trail — Aug 2011",
+          "verbatim": "John Muir Trail from the Perspective of Andrew Kelley — 2011 Aug 04",
+          "role": "link"
+        },
+        {
+          "text": "Lemming PyWeek 12 Journal — Apr 2011",
+          "verbatim": "Lemming - PyWeek #12 Game Development Journal — 2011 Apr 02",
+          "role": "link"
+        }
+      ]
+    },
+    {
+      "heading": "Projects",
+      "items": [
+        {
+          "text": "Zig language and toolchain",
+          "verbatim": "Zig - a general-purpose programming language and toolchain for maintaining robust, optimal and reusable software.",
+          "role": "link"
+        },
+        {
+          "text": "Groove Basin music player server",
+          "verbatim": "Groove Basin - music player server with a web-based user interface.",
+          "role": "link"
+        }
+      ]
+    },
+    {
+      "heading": "Talks",
+      "items": [
+        {
+          "text": "Software Should Be Perfect — Mar 2018",
+          "verbatim": "Software Should Be Perfect — 2018-03-20",
+          "role": "link"
+        },
+        {
+          "text": "Zig language robust reusable software — May 2019",
+          "verbatim": "Zig: a programming language for maintaining robust, reusable software — 2019-05-09",
+          "role": "link"
+        },
+        {
+          "text": "Practical Guide Data-Oriented Design — Nov 2021",
+          "verbatim": "A Practical Guide to Applying Data-Oriented Design — 2021-11-23",
+          "role": "link"
+        },
+        {
+          "text": "Introduction to Zig — Oct 2022",
+          "verbatim": "Introduction to Zig — 2022-10-03",
+          "role": "link"
+        },
+        {
+          "text": "Stay Together For Kids — Oct 2022",
+          "verbatim": "Stay Together For The Kids (Why System Package Managers and Language Package Managers Struggle to Cooperate) — 2022-10-17",
+          "role": "link"
+        },
+        {
+          "text": "Making Systems Programming Accessible — Apr 2023",
+          "verbatim": "Making Systems Programming Accessible — 2023-04-07",
+          "role": "link"
+        },
+        {
+          "text": "Case Study Zig Software Foundation — Aug 2023",
+          "verbatim": "Case Study: Zig Software Foundation — 2023-08-26",
+          "role": "link"
+        },
+        {
+          "text": "How to Build Software From Source — Sep 2023",
+          "verbatim": "How to Build Software From Source — 2023-09-14",
+          "role": "link"
+        },
+        {
+          "text": "Systems-Minded Music Player App — Aug 2024",
+          "verbatim": "A Systems-Minded Approach to Creating a Music Player Application — 2024-08-12",
+          "role": "link"
+        },
+        {
+          "text": "Defense Free Software Movement — Nov 2024",
+          "verbatim": "In Defense of the Free Software Movement — 2024-11-23",
+          "role": "link"
+        },
+        {
+          "text": "Programming Without Pointers — Feb 2025",
+          "verbatim": "Programming Without Pointers — 2025-02-28",
+          "role": "link"
+        },
+        {
+          "text": "Don't Forget To Flush — Aug 2025",
+          "verbatim": "Don't Forget To Flush — 2025-08-11",
+          "role": "link"
+        }
+      ]
+    },
+    {
+      "heading": "Game Jams",
+      "items": [
+        {
+          "text": "Face the Music",
+          "verbatim": "Face the Music — Rock your way out of being trampled by a mob of screaming fans.",
+          "role": "heading"
+        },
+        {
+          "text": "Face the Music — play in browser",
+          "verbatim": "Face the Music — play in your browser",
+          "role": "link"
+        },
+        {
+          "text": "Face the Music — source",
+          "verbatim": "Face the Music — source",
+          "role": "link"
+        },
+        {
+          "text": "Purgatory",
+          "verbatim": "Purgatory — Escape from the circles of hell. 7 hour game jam.",
+          "role": "heading"
+        },
+        {
+          "text": "Purgatory — play in browser",
+          "verbatim": "Purgatory — play in your browser",
+          "role": "link"
+        },
+        {
+          "text": "Purgatory — source",
+          "verbatim": "Purgatory — source",
+          "role": "link"
+        },
+        {
+          "text": "Pillagers!",
+          "verbatim": "Pillagers! — Real Time Strategy game with space physics, made for 7dRTS.",
+          "role": "heading"
+        },
+        {
+          "text": "Pillagers! — 7dRTS",
+          "verbatim": "Pillagers! — 7dRTS",
+          "role": "link"
+        },
+        {
+          "text": "Pillagers! — play in browser",
+          "verbatim": "Pillagers! — play in your browser",
+          "role": "link"
+        },
+        {
+          "text": "Pillagers! — source",
+          "verbatim": "Pillagers! — source",
+          "role": "link"
+        },
+        {
+          "text": "Pillagers! — game journal",
+          "verbatim": "Pillagers! — game development journal",
+          "role": "link"
+        },
+        {
+          "text": "Dr Chemical's Lab",
+          "verbatim": "Dr. Chemical's Lab — arcade/simulation/multiplayer, made for PyWeek #14.",
+          "role": "heading"
+        },
+        {
+          "text": "Dr Chemical's Lab — PyWeek 14",
+          "verbatim": "Dr. Chemical's Lab — PyWeek #14",
+          "role": "link"
+        },
+        {
+          "text": "Dr Chemical's Lab — play in browser",
+          "verbatim": "Dr. Chemical's Lab — play in your browser",
+          "role": "link"
+        },
+        {
+          "text": "Dr Chemical's Lab — source",
+          "verbatim": "Dr. Chemical's Lab — source",
+          "role": "link"
+        },
+        {
+          "text": "Lemming",
+          "verbatim": "Lemming — Side-scrolling platformer, made for PyWeek #12.",
+          "role": "heading"
+        },
+        {
+          "text": "Lemming — PyWeek 12",
+          "verbatim": "Lemming — PyWeek #12",
+          "role": "link"
+        },
+        {
+          "text": "Lemming — play in browser",
+          "verbatim": "Lemming — play in your browser",
+          "role": "link"
+        },
+        {
+          "text": "Lemming — source",
+          "verbatim": "Lemming — source",
+          "role": "link"
+        },
+        {
+          "text": "Lemming — game journal",
+          "verbatim": "Lemming — game development journal",
+          "role": "link"
+        },
+        {
+          "text": "Planetarius",
+          "verbatim": "Planetarius — Networked multiplayer arcade shooter, made for Ludum Dare 30.",
+          "role": "heading"
+        },
+        {
+          "text": "Planetarius — Ludum Dare 30",
+          "verbatim": "Planetarius — Ludum Dare 30",
+          "role": "link"
+        },
+        {
+          "text": "Planetarius — source",
+          "verbatim": "Planetarius — source",
+          "role": "link"
+        }
+      ]
+    }
+  ]
+}
