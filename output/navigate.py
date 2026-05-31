@@ -129,6 +129,7 @@ class NavigationStateMachine:
         self.play_text(" ".join(part for part in parts if part))
 
     def center_pressed(self):
+        print("BTN_CENTER pressed")
         with self._lock:
             self._center_hold_fired = False
 

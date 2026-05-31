@@ -1,0 +1,657 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Touchpoint</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap"
+            rel="stylesheet"
+        />
+        <style>
+            *,
+            *::before,
+            *::after {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }
+
+            :root {
+                --black: #000000;
+                --white: #ffffff;
+                --gray-light: #e5e5e5;
+                --gray-mid: #525252;
+                --gray-faint: #f5f5f5;
+                --font-serif: "Playfair Display", Georgia, serif;
+                --font-mono: "JetBrains Mono", monospace;
+            }
+
+            html,
+            body {
+                height: 100%;
+                background: var(--white);
+                color: var(--black);
+                font-family: var(--font-mono);
+                -webkit-font-smoothing: antialiased;
+            }
+
+            /* subtle horizontal line texture */
+            body::before {
+                content: "";
+                position: fixed;
+                inset: 0;
+                background-image: repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 3px,
+                    #00000006 3px,
+                    #00000006 4px
+                );
+                pointer-events: none;
+                z-index: 0;
+            }
+
+            .layout {
+                position: relative;
+                z-index: 1;
+                display: grid;
+                grid-template-rows: auto 1fr auto;
+                min-height: 100vh;
+            }
+
+            /* ── HEADER ── */
+            .header {
+                border-bottom: 4px solid var(--black);
+                padding: 20px 40px 16px;
+                display: flex;
+                align-items: baseline;
+                justify-content: space-between;
+            }
+
+            .header-left {
+                display: flex;
+                align-items: baseline;
+                gap: 16px;
+            }
+
+            .logo {
+                font-family: var(--font-serif);
+                font-size: 26px;
+                font-weight: 700;
+                letter-spacing: -0.025em;
+            }
+
+            .logo-tag {
+                font-size: 9px;
+                letter-spacing: 0.2em;
+                text-transform: uppercase;
+                color: var(--gray-mid);
+            }
+
+            .header-right {
+                font-size: 9px;
+                letter-spacing: 0.15em;
+                text-transform: uppercase;
+                color: var(--gray-mid);
+                display: flex;
+                align-items: center;
+                gap: 20px;
+            }
+
+            .status-dot {
+                display: inline-block;
+                width: 6px;
+                height: 6px;
+                background: var(--black);
+                border-radius: 50%;
+                margin-right: 6px;
+                animation: pulse-dot 2s ease-in-out infinite;
+            }
+
+            @keyframes pulse-dot {
+                0%,
+                100% {
+                    opacity: 1;
+                }
+                50% {
+                    opacity: 0.2;
+                }
+            }
+
+            /* ── MAIN BODY ── */
+            .body {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+            }
+
+            /* ── LEFT PANEL ── */
+            .left {
+                border-right: 2px solid var(--black);
+                padding: 48px 40px 40px;
+                display: flex;
+                flex-direction: column;
+                gap: 0;
+            }
+
+            .panel-eyebrow {
+                font-size: 9px;
+                letter-spacing: 0.2em;
+                text-transform: uppercase;
+                color: var(--gray-mid);
+                padding-bottom: 10px;
+                border-bottom: 1px solid var(--gray-light);
+                margin-bottom: 28px;
+            }
+
+            /* Big editorial headline */
+            .panel-headline {
+                font-family: var(--font-serif);
+                font-size: clamp(48px, 6vw, 80px);
+                font-weight: 700;
+                line-height: 0.95;
+                letter-spacing: -0.04em;
+                margin-bottom: 10px;
+            }
+
+            .panel-headline em {
+                font-style: italic;
+                font-weight: 400;
+            }
+
+            .panel-sub {
+                font-size: 11px;
+                letter-spacing: 0.06em;
+                color: var(--gray-mid);
+                margin-bottom: 40px;
+                line-height: 1.7;
+                max-width: 320px;
+            }
+
+            /* Input */
+            .input-block {
+                margin-top: auto;
+            }
+
+            .input-label {
+                font-size: 9px;
+                letter-spacing: 0.2em;
+                text-transform: uppercase;
+                color: var(--gray-mid);
+                margin-bottom: 10px;
+                display: block;
+            }
+
+            .input-row {
+                display: flex;
+                border: 2px solid var(--black);
+                transition: border-color 80ms;
+            }
+
+            .input-row:focus-within {
+                border-color: var(--black);
+                box-shadow: 4px 4px 0 var(--black);
+            }
+
+            .word-input {
+                flex: 1;
+                font-family: var(--font-mono);
+                font-size: 15px;
+                padding: 14px 16px;
+                border: none;
+                outline: none;
+                background: var(--white);
+                color: var(--black);
+                letter-spacing: 0.04em;
+            }
+
+            .word-input::placeholder {
+                color: #ccc;
+                font-style: italic;
+            }
+
+            .send-btn {
+                font-family: var(--font-mono);
+                font-size: 9px;
+                letter-spacing: 0.15em;
+                text-transform: uppercase;
+                background: var(--black);
+                color: var(--white);
+                border: none;
+                padding: 0 22px;
+                cursor: pointer;
+                transition: background 80ms;
+                white-space: nowrap;
+            }
+
+            .send-btn:hover {
+                background: #222;
+            }
+            .send-btn:active {
+                background: #444;
+            }
+
+            .input-hint {
+                font-size: 9px;
+                color: #bbb;
+                letter-spacing: 0.08em;
+                margin-top: 8px;
+            }
+
+            /* thick rule separator */
+            .rule {
+                width: 100%;
+                height: 2px;
+                background: var(--black);
+                margin: 36px 0;
+            }
+
+            /* ── RIGHT PANEL ── */
+            .right {
+                padding: 48px 40px 40px;
+                display: flex;
+                flex-direction: column;
+                gap: 0;
+            }
+
+            .now-playing-eyebrow {
+                font-size: 9px;
+                letter-spacing: 0.2em;
+                text-transform: uppercase;
+                color: var(--gray-mid);
+                padding-bottom: 10px;
+                border-bottom: 1px solid var(--gray-light);
+                margin-bottom: 32px;
+            }
+
+            /* Character + Braille side by side */
+            .char-braille-row {
+                display: flex;
+                align-items: flex-end;
+                gap: 28px;
+                margin-bottom: 40px;
+            }
+
+            .char-display {
+                font-family: var(--font-serif);
+                font-size: clamp(80px, 10vw, 128px);
+                font-weight: 700;
+                line-height: 1;
+                letter-spacing: -0.05em;
+                color: var(--gray-light);
+                transition: color 80ms;
+                min-width: 80px;
+                user-select: none;
+            }
+
+            .char-display.active {
+                color: var(--black);
+                animation: char-in 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+            }
+
+            @keyframes char-in {
+                0% {
+                    transform: translateY(8px) scale(1.05);
+                    opacity: 0;
+                }
+                100% {
+                    transform: translateY(0) scale(1);
+                    opacity: 1;
+                }
+            }
+
+            /* Braille cell */
+            .braille-cell {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+                padding: 20px;
+                border: 2px solid var(--black);
+                flex-shrink: 0;
+            }
+
+            .dot {
+                width: 18px;
+                height: 18px;
+                border-radius: 50%;
+                border: 1.5px solid var(--black);
+                background: var(--white);
+                transition:
+                    background 80ms,
+                    transform 80ms;
+            }
+
+            .dot.on {
+                background: var(--black);
+                transform: scale(1.08);
+            }
+
+            /* dot labels */
+            .braille-legend {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 4px 16px;
+                margin-bottom: 36px;
+            }
+
+            .dot-label {
+                font-size: 9px;
+                letter-spacing: 0.1em;
+                color: #bbb;
+                display: flex;
+                align-items: center;
+                gap: 5px;
+            }
+
+            .dot-label-circle {
+                width: 8px;
+                height: 8px;
+                border-radius: 50%;
+                border: 1px solid #ccc;
+                flex-shrink: 0;
+                transition: all 80ms;
+            }
+
+            .dot-label-circle.on {
+                background: var(--black);
+                border-color: var(--black);
+            }
+
+            /* Motor section */
+            .motor-eyebrow {
+                font-size: 9px;
+                letter-spacing: 0.2em;
+                text-transform: uppercase;
+                color: var(--gray-mid);
+                padding-bottom: 10px;
+                border-bottom: 1px solid var(--gray-light);
+                margin-bottom: 16px;
+            }
+
+            .motor-grid {
+                display: grid;
+                grid-template-columns: repeat(6, 1fr);
+                gap: 6px;
+            }
+
+            .motor-badge {
+                font-size: 9px;
+                letter-spacing: 0.08em;
+                text-transform: uppercase;
+                padding: 8px 4px;
+                border: 1px solid var(--gray-light);
+                color: #ccc;
+                text-align: center;
+                transition: all 80ms;
+            }
+
+            .motor-badge.on {
+                border-color: var(--black);
+                background: var(--black);
+                color: var(--white);
+            }
+
+            /* ── FOOTER ── */
+            .footer {
+                border-top: 1px solid var(--gray-light);
+                padding: 12px 40px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                font-size: 9px;
+                letter-spacing: 0.12em;
+                text-transform: uppercase;
+                color: #bbb;
+            }
+
+            .footer-right {
+                color: var(--gray-mid);
+            }
+        </style>
+    </head>
+    <body>
+        <div class="layout">
+            <header class="header">
+                <div class="header-left">
+                    <span class="logo">Touchpoint</span>
+                    <span class="logo-tag">Braille Motor Interface</span>
+                </div>
+                <div class="header-right">
+                    <span><span class="status-dot"></span>Device Ready</span>
+                    <span>6 Motors</span>
+                </div>
+            </header>
+
+            <main class="body">
+                <!-- LEFT -->
+                <div class="left">
+                    <div class="panel-eyebrow">Input</div>
+
+                    <div class="panel-headline">
+                        Feel<br /><em>every</em><br />word.
+                    </div>
+
+                    <p class="panel-sub">
+                        Type any word below. Each character is translated to a
+                        Braille chord and played across the vibration motors in
+                        sequence.
+                    </p>
+
+                    <div class="input-block">
+                        <label class="input-label" for="wordInput"
+                            >Word to play</label
+                        >
+                        <div class="input-row">
+                            <input
+                                class="word-input"
+                                id="wordInput"
+                                type="text"
+                                placeholder="e.g. hello"
+                                maxlength="32"
+                                autocomplete="off"
+                                spellcheck="false"
+                            />
+                            <button class="send-btn" id="sendBtn">
+                                Send →
+                            </button>
+                        </div>
+                        <div class="input-hint">
+                            Press Enter or click Send to begin playback
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RIGHT -->
+                <div class="right">
+                    <div class="now-playing-eyebrow">Now Playing</div>
+
+                    <div class="char-braille-row">
+                        <div class="char-display" id="charDisplay">—</div>
+                        <div class="braille-cell" id="brailleCell">
+                            <div class="dot" id="d1" title="Dot 1"></div>
+                            <div class="dot" id="d4" title="Dot 4"></div>
+                            <div class="dot" id="d2" title="Dot 2"></div>
+                            <div class="dot" id="d5" title="Dot 5"></div>
+                            <div class="dot" id="d3" title="Dot 3"></div>
+                            <div class="dot" id="d6" title="Dot 6"></div>
+                        </div>
+                    </div>
+
+                    <div class="braille-legend">
+                        <div class="dot-label">
+                            <div class="dot-label-circle" id="dl1"></div>
+                            Dot 1 — MOT1
+                        </div>
+                        <div class="dot-label">
+                            <div class="dot-label-circle" id="dl4"></div>
+                            Dot 4 — MOT4
+                        </div>
+                        <div class="dot-label">
+                            <div class="dot-label-circle" id="dl2"></div>
+                            Dot 2 — MOT2
+                        </div>
+                        <div class="dot-label">
+                            <div class="dot-label-circle" id="dl5"></div>
+                            Dot 5 — MOT5
+                        </div>
+                        <div class="dot-label">
+                            <div class="dot-label-circle" id="dl3"></div>
+                            Dot 3 — MOT3
+                        </div>
+                        <div class="dot-label">
+                            <div class="dot-label-circle" id="dl6"></div>
+                            Dot 6 — MOT6
+                        </div>
+                    </div>
+
+                    <div class="motor-eyebrow">Motors</div>
+                    <div class="motor-grid">
+                        <div class="motor-badge" id="m1">MOT1</div>
+                        <div class="motor-badge" id="m2">MOT2</div>
+                        <div class="motor-badge" id="m3">MOT3</div>
+                        <div class="motor-badge" id="m4">MOT4</div>
+                        <div class="motor-badge" id="m5">MOT5</div>
+                        <div class="motor-badge" id="m6">MOT6</div>
+                    </div>
+                </div>
+            </main>
+
+            <footer class="footer">
+                <span>Quackhack 3.0 — 2026</span>
+                <span class="footer-right"
+                    >Tactile Web for Deafblind Users</span
+                >
+            </footer>
+        </div>
+
+        <script>
+            const mapping = {
+                a: [1, 0, 0, 0, 0, 0],
+                b: [1, 1, 0, 0, 0, 0],
+                c: [1, 0, 0, 1, 0, 0],
+                d: [1, 0, 0, 1, 1, 0],
+                e: [1, 0, 0, 0, 1, 0],
+                f: [1, 1, 0, 1, 0, 0],
+                g: [1, 1, 0, 1, 1, 0],
+                h: [1, 1, 0, 0, 1, 0],
+                i: [0, 1, 0, 1, 0, 0],
+                j: [0, 1, 0, 1, 1, 0],
+                k: [1, 0, 1, 0, 0, 0],
+                l: [1, 1, 1, 0, 0, 0],
+                m: [1, 0, 1, 1, 0, 0],
+                n: [1, 0, 1, 1, 1, 0],
+                o: [1, 0, 1, 0, 1, 0],
+                p: [1, 1, 1, 1, 0, 0],
+                q: [1, 1, 1, 1, 1, 0],
+                r: [1, 1, 1, 0, 1, 0],
+                s: [0, 1, 1, 1, 0, 0],
+                t: [0, 1, 1, 1, 1, 0],
+                u: [1, 0, 1, 0, 0, 1],
+                v: [1, 1, 1, 0, 0, 1],
+                w: [0, 1, 0, 1, 1, 1],
+                x: [1, 0, 1, 1, 0, 1],
+                y: [1, 0, 1, 1, 1, 1],
+                z: [1, 0, 1, 0, 1, 1],
+                " ": [0, 0, 0, 0, 0, 0],
+            };
+
+            let timer = null;
+
+            function setDots(dots) {
+                ["d1", "d2", "d3", "d4", "d5", "d6"].forEach((id, i) =>
+                    document
+                        .getElementById(id)
+                        .classList.toggle("on", !!dots[i]),
+                );
+                ["dl1", "dl2", "dl3", "dl4", "dl5", "dl6"].forEach((id, i) =>
+                    document
+                        .getElementById(id)
+                        .classList.toggle("on", !!dots[i]),
+                );
+                ["m1", "m2", "m3", "m4", "m5", "m6"].forEach((id, i) =>
+                    document
+                        .getElementById(id)
+                        .classList.toggle("on", !!dots[i]),
+                );
+            }
+
+            function clearDots() {
+                setDots([0, 0, 0, 0, 0, 0]);
+            }
+
+            function showChar(ch) {
+                const el = document.getElementById("charDisplay");
+                el.textContent = ch === " " ? "·" : ch.toUpperCase();
+                el.classList.remove("active");
+                void el.offsetWidth;
+                el.classList.add("active");
+            }
+
+            function resetChar() {
+                const el = document.getElementById("charDisplay");
+                el.textContent = "—";
+                el.classList.remove("active");
+            }
+
+            function play(word) {
+                if (timer) clearTimeout(timer);
+                clearDots();
+                resetChar();
+
+                const chars = word.split("");
+                let i = 0;
+                const DWELL = 600;
+                const GAP = 160;
+
+                function step() {
+                    if (i >= chars.length) {
+                        clearDots();
+                        resetChar();
+                        return;
+                    }
+                    const ch = chars[i];
+                    const dots = mapping[ch.toLowerCase()] || [
+                        0, 0, 0, 0, 0, 0,
+                    ];
+                    showChar(ch);
+                    setDots(dots);
+                    i++;
+                    timer = setTimeout(() => {
+                        clearDots();
+                        timer = setTimeout(step, GAP);
+                    }, DWELL);
+                }
+
+                step();
+            }
+
+            document
+                .getElementById("sendBtn")
+                .addEventListener("click", async () => {
+                    const val = document
+                        .getElementById("wordInput")
+                        .value.trim();
+                    if (!val) return;
+                    play(val);
+                    try {
+                        await fetch("/play", {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify({ word: val }),
+                        });
+                    } catch (err) {
+                        console.error("Failed to trigger motor playback", err);
+                    }
+                });
+
+            document
+                .getElementById("wordInput")
+                .addEventListener("keydown", (e) => {
+                    if (e.key === "Enter")
+                        document.getElementById("sendBtn").click();
+                });
+        </script>
+    </body>
+</html>

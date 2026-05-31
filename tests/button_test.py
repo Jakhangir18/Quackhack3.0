@@ -35,6 +35,8 @@ def main():
 
     print("Listening for button presses. Press Ctrl+C to exit.")
     print(f"Configured pins: {BUTTONS}")
+    for name, button in zip(BUTTONS, buttons):
+        print(f"{name} initial pressed={button.is_pressed}", flush=True)
     try:
         while True:
             time.sleep(1)
