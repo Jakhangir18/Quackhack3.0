@@ -3,10 +3,17 @@
 Run on the Raspberry Pi:
     python tests/demo_touchpoint.py
 """
+import os
 import sys
 import time
 
 sys.path.insert(0, __file__.rsplit("/tests", 1)[0])
+
+if os.environ.get("GPIOZERO_PIN_FACTORY") == "mock":
+    from gpiozero.pins.mock import MockFactory, MockPWMPin
+    from gpiozero import Device
+    Device.pin_factory = MockFactory(pin_class=MockPWMPin)
+
 from output.motors import buzz_pattern, motors
 from output.mappings import mapping
 
