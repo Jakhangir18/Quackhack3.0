@@ -558,6 +558,10 @@
             };
 
             let timer = null;
+            const MOTOR_KICKSTART_MS = 40;
+            const MOTOR_BUZZ_MS = 2000;
+            const MOTOR_CHAR_MS = MOTOR_KICKSTART_MS + MOTOR_BUZZ_MS;
+            const MOTOR_GAP_MS = 0;
 
             function setDots(dots) {
                 ["d1", "d2", "d3", "d4", "d5", "d6"].forEach((id, i) =>
@@ -602,8 +606,6 @@
 
                 const chars = word.split("");
                 let i = 0;
-                const DWELL = 600;
-                const GAP = 160;
 
                 function step() {
                     if (i >= chars.length) {
@@ -620,8 +622,8 @@
                     i++;
                     timer = setTimeout(() => {
                         clearDots();
-                        timer = setTimeout(step, GAP);
-                    }, DWELL);
+                        timer = setTimeout(step, MOTOR_GAP_MS);
+                    }, MOTOR_CHAR_MS);
                 }
 
                 step();
@@ -634,13 +636,14 @@
                         .getElementById("wordInput")
                         .value.trim();
                     if (!val) return;
+                    const request = fetch("/play", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ word: val }),
+                    });
                     play(val);
                     try {
-                        await fetch("/play", {
-                            method: "POST",
-                            headers: { "Content-Type": "application/json" },
-                            body: JSON.stringify({ word: val }),
-                        });
+                        await request;
                     } catch (err) {
                         console.error("Failed to trigger motor playback", err);
                     }
