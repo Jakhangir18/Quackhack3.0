@@ -60,19 +60,19 @@ def buzz_pattern(pattern, level=LEVEL, duration=2.0):
         motors[dot].off()
 
 
-try:
-    # Test each dot one at a time so you can verify the physical layout.
-    for dot, gpio in DOT_GPIO.items():
-        print(f">>> dot{dot} / GPIO{gpio}. Watch which motor vibrates.")
-        buzz_dot(dot)
-        sleep(1.0)
+if __name__ == "__main__":
+    try:
+        for dot, gpio in DOT_GPIO.items():
+            print(f">>> dot{dot} / GPIO{gpio}. Watch which motor vibrates.")
+            buzz_dot(dot)
+            sleep(1.0)
 
-    print(">>> All 6 active dots together.")
-    buzz_pattern([1, 1, 1, 1, 1, 1])
+        print(">>> All 6 active dots together.")
+        buzz_pattern([1, 1, 1, 1, 1, 1])
 
-    print("Done.")
+        print("Done.")
 
-finally:
-    for motor in motors.values():
-        motor.off()
-        motor.close()
+    finally:
+        for motor in motors.values():
+            motor.off()
+            motor.close()
