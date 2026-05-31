@@ -19,7 +19,9 @@ def main(argv=None):
     ap.add_argument("--offline", action="store_true",
                     help="treat source as a local JSON file (no Playwright needed)")
     ap.add_argument("--rank", action="store_true",
-                    help="sort by heuristic importance instead of reading order")
+                    help="rerank items with Gemini (falls back to heuristic if no API key)")
+    ap.add_argument("--goal", default=None,
+                    help="user intent passed to the LLM, e.g. 'find the latest blog post'")
     args = ap.parse_args(argv)
 
     if args.offline:
@@ -31,7 +33,13 @@ def main(argv=None):
         tree = fetch_ax_tree(args.source)
         url = args.source
 
-    contract = build_contract(tree, url=url, sort_by_importance=args.rank)
+    contract = build_contract(tree, url=url, sort_by_importance=False)
+
+    if args.rank:
+        from .rank import llm_rank
+        contract["items"] = llm_rank(contract["items"], goal=args.goal)
+        contract["item_count"] = len(contract["items"])
+
     json.dump(contract, sys.stdout, indent=2, ensure_ascii=False)
     print()
 
