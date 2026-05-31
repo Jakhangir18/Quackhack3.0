@@ -32,6 +32,19 @@ cd Quackhack3.0
 uv sync
 ```
 
+On the Raspberry Pi, make sure GPIO access works:
+
+```bash
+sudo usermod -aG gpio $USER
+```
+
+Log out and back in, or reboot, after changing groups. Then verify that `uv`
+installed the GPIO backend:
+
+```bash
+uv run python -c "import lgpio; print('lgpio ok')"
+```
+
 For extractor/Gemini experiments, copy the env file and add your Gemini key:
 
 ```bash
