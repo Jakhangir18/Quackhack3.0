@@ -55,6 +55,7 @@ class TextPlayer:
         print(text)
         for char in text.lower():
             pattern = self.mapping.get(char, [0, 0, 0, 0, 0, 0])
+            print(f"{pattern} -> {char}")
             if self.buzz_pattern:
                 self.buzz_pattern(pattern, duration=LETTER_DUR)
             else:
@@ -94,25 +95,30 @@ class NavigationStateMachine:
         self.play_text(self.current_item.get("text", ""))
 
     def previous_item(self):
+        print("BTN_LEFT pressed")
         if self.item_idx > 0:
             self.item_idx -= 1
             self.play_current_item()
 
     def next_item(self):
+        print("BTN_RIGHT pressed")
         if self.item_idx < len(self.current_items) - 1:
             self.item_idx += 1
             self.play_current_item()
 
     def next_section(self):
+        print("BTN_UP pressed")
         self.section_idx = (self.section_idx + 1) % len(self.sections)
         self.item_idx = 0
         self.play_text(self.current_section.get("heading", ""))
         self.play_current_item()
 
     def play_verbatim(self):
+        print("BTN_CENTER tapped")
         self.play_text(self.current_item.get("verbatim", ""))
 
     def play_orientation_burst(self):
+        print("BTN_CENTER held")
         items = self.current_items
         parts = [
             self.tree.get("domain", ""),

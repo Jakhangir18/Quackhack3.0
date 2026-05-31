@@ -1,7 +1,7 @@
 from time import sleep
 
 from gpiozero import PWMOutputDevice
-from mappings import mapping
+from output.mappings import mapping
 
 LEVEL = 0.35  # vibration strength 0.0-1.0 (raise/lower as needed)
 FREQ = 200
