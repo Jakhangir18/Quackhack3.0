@@ -1,6 +1,7 @@
 from time import sleep
 
 from gpiozero import PWMOutputDevice
+from mappings import mapping
 
 LEVEL = 0.35  # vibration strength 0.0-1.0 (raise/lower as needed)
 FREQ = 200
@@ -58,6 +59,12 @@ def buzz_pattern(pattern, level=LEVEL, duration=2.0):
 
     for dot in active_dots:
         motors[dot].off()
+
+
+def buzz_word(word, level=LEVEL, duration=2.0):
+    for char in word:
+        pattern = mapping.get(char, [0, 0, 0, 0, 0, 0])
+        buzz_pattern(pattern, level=level, duration=duration)
 
 
 if __name__ == "__main__":
