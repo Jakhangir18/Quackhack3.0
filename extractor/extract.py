@@ -16,6 +16,19 @@ from playwright.sync_api import sync_playwright
 _KEY_RE = re.compile(r'^(\w+)(?:\s+"([^"]*)")?(?:\s+\[level=(\d+)\])?')
 
 
+def _parse_string_node(text):
+    m = _KEY_RE.match(text)
+    if not m or not (m.group(2) or m.group(3)):
+        return {"role": "text", "name": text, "children": []}
+
+    node = {"role": m.group(1), "children": []}
+    if m.group(2):
+        node["name"] = m.group(2)
+    if m.group(3):
+        node["level"] = int(m.group(3))
+    return node
+
+
 def _parse_node(key, value):
     """Turn one ARIA YAML key+value into the dict shape filter.py expects."""
     m = _KEY_RE.match(key)
@@ -28,7 +41,7 @@ def _parse_node(key, value):
     children = value if isinstance(value, list) else ([value] if value is not None else [])
     for child in children:
         if isinstance(child, str):
-            node["children"].append({"role": "text", "name": child, "children": []})
+            node["children"].append(_parse_string_node(child))
         elif isinstance(child, dict):
             for ck, cv in child.items():
                 node["children"].append(_parse_node(ck, cv))
@@ -41,6 +54,7 @@ def fetch_ax_tree(url, timeout_ms=15000, headless=True):
         page = browser.new_page()
         try:
             page.goto(url, wait_until="domcontentloaded", timeout=timeout_ms)
+            page.wait_for_load_state("networkidle", timeout=timeout_ms)
             snapshot = page.aria_snapshot()
         finally:
             browser.close()
@@ -50,7 +64,7 @@ def fetch_ax_tree(url, timeout_ms=15000, headless=True):
     root_children = []
     for item in (parsed or []):
         if isinstance(item, str):
-            root_children.append({"role": "text", "name": item, "children": []})
+            root_children.append(_parse_string_node(item))
         elif isinstance(item, dict):
             for k, v in item.items():
                 root_children.append(_parse_node(k, v))
