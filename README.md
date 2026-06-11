@@ -1,4 +1,4 @@
-# Touchpoint
+# Touchpoint (2nd Place Overall @ Quackhacks 3.0)
 
 Touchpoint is a Raspberry Pi powered vibrotactile Braille demo. The Pi serves a
 small local web page, accepts a word from the browser, and plays that word across
